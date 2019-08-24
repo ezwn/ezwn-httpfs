@@ -29,7 +29,7 @@ public class Application implements CommandLineRunner {
 
         try {
             while (true) {
-                Thread.currentThread().sleep(250);
+				Thread.sleep(250);
             }
         } catch (InterruptedException ex) {
             Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);

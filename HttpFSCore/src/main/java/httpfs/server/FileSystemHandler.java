@@ -175,7 +175,7 @@ public class FileSystemHandler implements Handler {
         String newPath;
 
         try {
-            newPath = correctUri((new URLDecoder()).decode(
+            newPath = correctUri(URLDecoder.decode(
                     session.getHeaders().get("destination"),
                     "UTF-8"
             ));

@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class MimeUtil {
 
-    public static final Map<String, String> mimeTypes = new HashMap();
+    public static final Map<String, String> mimeTypes = new HashMap<>();
 
     static {
         mimeTypes.put("html", "text/html");

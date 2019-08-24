@@ -32,7 +32,7 @@ public class FileAPI {
             throw new RuntimeException("File is not readable.");
         }
 
-        final List<FileDesc> descs = new ArrayList();
+        final List<FileDesc> descs = new ArrayList<>();
 
         for (File f : file.listFiles()) {
             descs.add(new FileDesc(f));

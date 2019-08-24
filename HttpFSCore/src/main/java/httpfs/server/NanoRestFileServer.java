@@ -15,7 +15,7 @@ import javax.net.ssl.SSLServerSocketFactory;
 
 public class NanoRestFileServer extends NanoHTTPD {
 
-    private final List<Handler> handlers = new ArrayList();
+    private final List<Handler> handlers = new ArrayList<>();
     private final Handler diagnosticHandler;
     private final Handler mainHandler;
 
