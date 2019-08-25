@@ -1,19 +1,14 @@
 package httpfs.server;
 
-import httpfs.HttpFSLogger;
-import fi.iki.elonen.NanoHTTPD;
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.net.ssl.KeyManagerFactory;
-import javax.net.ssl.SSLServerSocketFactory;
+
+import javax.annotation.PostConstruct;
+
+import fi.iki.elonen.NanoHTTPD;
+import httpfs.HttpFSLogger;
 
 public class NanoHTTPFileServer extends NanoHTTPD {
 
@@ -39,6 +34,7 @@ public class NanoHTTPFileServer extends NanoHTTPD {
 		}
 	}
 
+	@PostConstruct
 	public void init() throws FileNotFoundException {
 		sayHello();
 		

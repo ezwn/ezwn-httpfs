@@ -22,7 +22,7 @@ import httpfs.server.NanoHTTPFileServer;
 public class Application implements CommandLineRunner {
 
 	@Autowired
-	private NanoHTTPFileServer restFileServer;
+	private NanoHTTPFileServer server;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -32,8 +32,7 @@ public class Application implements CommandLineRunner {
 	public void run(String... args) {
 		
 		try {
-			restFileServer.init();
-			restFileServer.start();
+				server.start();
 		} catch (FileNotFoundException fne) {
 			
 		} catch (IOException ex) {
