@@ -106,10 +106,10 @@ public class FileSystemHandler implements Handler {
         } catch (FileNotFoundException fnfe) {
             return newFixedLengthResponse(NanoHTTPD.Response.Status.NOT_FOUND, null, null);
         } catch (IOException ex) {
-            Logger.getLogger(NanoRestFileServer.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            Logger.getLogger(NanoHTTPFileServer.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
             return newFixedLengthResponse(NanoHTTPD.Response.Status.INTERNAL_ERROR, "text/plain", ex.getMessage());
         } catch (NanoHTTPD.ResponseException ex) {
-            Logger.getLogger(NanoRestFileServer.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            Logger.getLogger(NanoHTTPFileServer.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
             return newFixedLengthResponse(NanoHTTPD.Response.Status.INTERNAL_ERROR, "text/plain", ex.getMessage());
         }
 

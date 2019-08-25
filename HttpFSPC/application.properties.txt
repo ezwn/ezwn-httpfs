@@ -1,7 +1,4 @@
 
-#Server port
 httpfs.port = 8084
-
-#Root
 httpfs.root = /home/nicolas
-httpfs.https = false
+httpfs.protocol = HTTP

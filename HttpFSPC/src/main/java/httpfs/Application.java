@@ -1,85 +1,51 @@
 package httpfs;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
+
+import httpfs.server.NanoHTTPFileServer;
 
 @SpringBootApplication
-@ComponentScan({
-    "httpfs"
-})
+@ComponentScan({ "httpfs" })
 @ConfigurationProperties(prefix = "httpfs")
+@ImportResource("classpath:app-config.xml")
 public class Application implements CommandLineRunner {
 
-    private String port = "5000";
-    private String root = "~/httpfs";
-    private String https = "false";
+	@Autowired
+	private NanoHTTPFileServer restFileServer;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
-
-    @Override
-    public void run(String... args) {
-        HttpFSService.boot(getRoot(), Integer.parseInt(getPort()), Boolean.parseBoolean(getHttps()));
-
-        try {
-            while (true) {
+	@Override
+	public void run(String... args) {
+		
+		try {
+			restFileServer.init();
+			restFileServer.start();
+		} catch (FileNotFoundException fne) {
+			
+		} catch (IOException ex) {
+			Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		try {
+			while (true) {
 				Thread.sleep(250);
-            }
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * @return the port
-     */
-    public String getPort() {
-        return port;
-    }
-
-    /**
-     * @param port the port to set
-     */
-    public void setPort(String port) {
-        this.port = port;
-    }
-
-    /**
-     * @return the root
-     */
-    public String getRoot() {
-        if (root.startsWith("~/")) {
-            return System.getProperty("user.home") + root.substring(1);
-        }
-
-        return root;
-    }
-
-    /**
-     * @param root the root to set
-     */
-    public void setRoot(String root) {
-        this.root = root;
-    }
-
-    /**
-     * @return the https
-     */
-    public String getHttps() {
-        return https;
-    }
-
-    /**
-     * @param https the https to set
-     */
-    public void setHttps(String https) {
-        this.https = https;
-    }
-
+			}
+		} catch (InterruptedException ex) {
+			Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 }

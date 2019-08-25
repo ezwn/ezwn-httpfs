@@ -23,7 +23,7 @@ public class ClassPathHandler implements Handler {
         if (uri.startsWith("/web/")) {
             switch (method) {
                 case "GET":
-                        InputStream inputStream = NanoRestFileServer.class.getResourceAsStream(uri);
+                        InputStream inputStream = NanoHTTPFileServer.class.getResourceAsStream(uri);
                         String mimeType = MimeUtil.getMimeType(uri);
                         
                         return newChunkedResponse(NanoHTTPD.Response.Status.OK, mimeType, inputStream);
