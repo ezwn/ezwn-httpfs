@@ -1,4 +1,3 @@
 # HttpFS
 
-HttpFS is an application server for desktop and mobile devices.
-# ezwn-httpfs
+HttpFS is a server for desktop and android enabling REST access to local file system.
